@@ -1,0 +1,36 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 100%; max-width: 400px;">
+
+        <h3 class="text-center mb-4">Registrar Usuario</h3>
+        <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="User">Usuario</label>
+                <input type="text" class="form-control" id="User" [(ngModel)]="user.nombre" name="user" required>
+            </div>
+            <div class="mb-3">
+                <label for="Email" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="Email" [(ngModel)]="user.correo" name="email">
+                <div id="emailHelp" class="form-text"><small>Ingresar el correo del usuario.</small> </div>
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="Password" [(ngModel)]="user.contrasena" name="pass">
+            </div>
+
+            <div class="mb-3">
+                <label for="SN">Seleccione un Socio:</label>
+                <select id="SN" class="form-control" [(ngModel)]="user.cod_socio" name="sn" (change)="seleccionarSocio($event)">
+                    <option *ngFor="let socio of socios" [value]="socio.numeroSocioNegocio">{{socio.numeroSocioNegocio}} - {{ socio.razonSocial }}</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Socio" class="form-label">Socio</label>
+                <input type="text" class="form-control" id="Socio" [(ngModel)]="user.socio" name="socio" disabled="true">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</div>

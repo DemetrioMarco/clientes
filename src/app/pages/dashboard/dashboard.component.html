@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-lg-9">
+        <h2 class="container mt-4">Dashboard de {{ socio }}</h2>
+    </div>
+    <div class="col-lg-3">
+        <p class="text-right mt-4">{{ currentDate| date:'dd/MM/yyyy'}}</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-4">
+        <select (change)="onMonthChange($event)" class="custom-select">
+            <option *ngFor="let month of [0,1,2,3,4,5,6,7,8,9,10,11]" [value]="month" [selected]="month === selectedMonth">
+              {{ getMonthName(month) }}
+            </option>
+          </select>
+    </div>
+</div>
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let card of cards">
+            <div class="card" [ngClass]="card.colorClass">
+                <div class="card-body">
+                    <h1 class="card-text text-center">{{ card.description }} </h1>
+                    <h5 class="card-title">{{ card.title }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-md-6 mb-2">
+            <div class="card">
+                <canvas id="canvas">{{ chart }}</canvas>
+
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Facturas del mes: {{ filteredData.length }}</h5>
+                </div>
+                <div class="card-text">
+                    <table class="table">
+                        <thead class="text-center">
+                            <tr class="table-success">
+                                <th>Factura</th>
+                                <th>Fecha</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of filteredData">
+                            <tr class="table-info">
+                                <td class="text-center">{{item.DocNum}}</td>
+                                <td class="text-center">{{item.DocDate | date:'dd/MM/yyyy' }}</td>
+                                <td class="text-right">{{item.DocTotal | currency: '$ '}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

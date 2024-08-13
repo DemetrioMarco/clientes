@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-lg-9">
+        <h2 class="container mt-4">Dashboard de Cobranza {{ socio }}</h2>
+    </div>
+    <div class="col-lg-3">
+        <p class="text-right mt-4">{{ currentDate| date:'dd/MM/yyyy'}}</p>
+    </div>
+</div>
+
+
+<div class="mt-4">
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text text-center">HISTORICO</p>
+                    <h5 class="card-title text-center">{{getTotalAmount() | currency: 'MXN':'$'}}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text text-center">VENTA {{ currentDate | date: 'yyyy' }}</p>
+                    <h5 class="card-title text-center">{{ getCompraAnual() | currency: 'MXN':'$' }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text text-center">A COBRAR</p>
+                    <h5 class="card-title text-center">{{ getPorPagar() | currency: 'MXN':'$' }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text text-center">VENCIDO</p>
+                    <h5 class="card-title text-center text-danger">{{ getVencido() | currency: 'MXN':'$' }}</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Embudo de facturación
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Monto Facturado</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="container text-center d-flex justify-content-center align-items-center " style="width: 300px; background-color: cornflowerblue; height: 100px;">
+                                <p style="color: aliceblue;">{{getTotalAmount() | currency: 'MXN':'$'}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Monto a cobrar</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="container text-center d-flex justify-content-center align-items-center " style="width: 280px; background-color: cornflowerblue; height: 100px;">
+                                <p style="color: aliceblue;">{{ getPorPagar() | currency: 'MXN':'$' }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Monto vencido</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="container text-center d-flex justify-content-center align-items-center " style="width: 250px; background-color: red; height: 100px;">
+                                <p style="color: aliceblue;">{{ getVencido() | currency: 'MXN':'$' }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card table-container">
+                <div class="card-header">
+                    Estado de facturas
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr class="table-primary text-center">
+                                <th>Número</th>
+                                <th>Fecha</th>
+                                <th>Vencimiento</th>
+                                <th>Total</th>
+                                <th>Pagado</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of data" [ngClass]="{
+                            'green-line': (item.DocTotal == item.PaidTodate), 
+                            'yellow-line': (item.DocTotal != item.PaidTodate && compareDates(item.DocDueDate) ),
+                            'red-line': (item.DocTotal != item.PaidTodate && !compareDates(item.DocDueDate) )
+                        }">
+                            <tr>
+                                <td class="text-center">{{ item.DocNum }}</td>
+                                <td class="text-center">{{ item.DocDate | date:'dd/MM/yyyy' }}</td>
+
+                                <td class="text-center">{{ item.DocDueDate | date:'dd/MM/yyyy' }}</td>
+
+                                <td class="text-right">{{ item.DocTotal | currency: 'MXN ':'$' }} </td>
+                                <td class="text-right">{{ item.PaidTodate | currency: 'MXN ':'$' }} </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

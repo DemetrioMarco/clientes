@@ -1,0 +1,48 @@
+.card {
+    width: 100%;
+}
+
+.card-img-top {
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-img-graf {
+    height: 390px;
+    object-fit: cover;
+}
+
+.card-blue {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.card-green {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.card-orange {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.card-purple {
+    background-color: #9b59b6;
+    color: #fff;
+}
+
+.custom-select {
+    max-width: 200px;
+    /* Ajusta el ancho máximo */
+    margin-bottom: 10px;
+    /* Añade espacio inferior */
+    /* Puedes agregar más estilos según sea necesario */
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

@@ -1,0 +1,14 @@
+{
+    "/api/**": {
+        "target": "https://35.174.29.99:50000/b1s/v1/Login",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/serviceLayer": {
+        "target": "https://35.174.29.99:50000/b1s/v1/BusinessPartners('00001')",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

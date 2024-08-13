@@ -1,0 +1,21 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar">
+    <h4 class="text-center">
+        <span class="fs-4">{{ usuario }}</span>
+    </h4>
+
+    <hr>
+    <div class="container text-center">
+        <i class="bi bi-person-circle text-primary" style="font-size: 4rem;"></i>
+    </div>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li *ngFor="let item of menuItems" class="nav-item">
+            <a [routerLink]="item.path" [ngClass]="{ 'active':isActive(item.path)}" class="nav-link">
+                <i [class]="item.icon"></i> {{ item.label }}
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div>
+        <button class="btn btn-primary d-lg-none" (click)="toggleSidebar()">Toggle Sidebar</button>
+    </div>
+</div>

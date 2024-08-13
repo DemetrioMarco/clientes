@@ -1,0 +1,32 @@
+/* styles.css */
+
+.green-line {
+    background-color: lightgreen;
+}
+
+.red-line {
+    background-color: red;
+    color: white;
+}
+
+.yellow-line {
+    background-color: yellow;
+}
+
+.table-container {
+    height: 525px;
+    /* Ajusta la altura según sea necesario */
+}
+
+.table-responsive {
+    height: 100%;
+    overflow: auto;
+}
+
+
+/* .table-responsive thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+} */
